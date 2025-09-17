@@ -6,7 +6,7 @@ import MuiDrawer from "@mui/material/Drawer";
 
 const PrimaryDraw = () => {
   const theme = useTheme();
-  const below600 = useMediaQuery("(max-width:599px)", { theme });
+  const below600 = useMediaQuery(theme.breakpoints.down("sm"));
   const [open, setOpen] = useState(false);
 
   const openedMixin = () => ({
@@ -26,22 +26,17 @@ const PrimaryDraw = () => {
     width: theme.primaryDraw.closed,
   });
 
+
   const Drawer = styled(
     MuiDrawer,
-    {}
+    {shouldForwardProp: (prop) => prop !== "open" }
   )(({ theme, open }) => ({
     width: theme.primaryDraw.width,
     whiteSpace: "nowrap",
     boxSizing: "border-box",
-
-    ...(open && {
-      ...openedMixin(),
-      "& .MuiDrawer-paper": openedMixin(),
-    }),
-    ...(!open && {
-      ...closedMixin(),
-      "& .MuiDrawer-paper": closedMixin(),
-    }),
+    "& .MuiDrawer-paper": {
+      ...(open ? openedMixin() : closedMixin())
+    }
   }));
 
   useEffect(() => {
@@ -51,6 +46,7 @@ const PrimaryDraw = () => {
   const handleDrawerOpen = () => {
     setOpen(true);
   };
+
   const handleDrawerClose = () => {
     setOpen(false);
   };

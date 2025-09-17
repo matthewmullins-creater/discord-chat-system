@@ -9,6 +9,8 @@ import {
   ListItem,
   ListItemText,
   useMediaQuery,
+  ListItemButton,
+  ListItemIcon,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -56,20 +58,22 @@ const PrimaryAppBar = () => {
       >
         <Box sx={{ display: { xs: "block", sm: "none" } }}>
           <IconButton
-            color="black"
             aria-label="open drawer"
             edge="start"
             sx={{ mr: 2 }}
             onClick={toggleDrawer(true)}
           >
             <MenuIcon />
-          </IconButton>
+            </IconButton>
         </Box>
-
+        
         <Drawer anchor="left" open={sideMenu} onClose={toggleDrawer(false)}>
           {[...Array(115)].map((_, index) => (
-            <ListItem button key={index}>
-              <ListItemText primary={`Item ${index + 1}`} />
+            <ListItem key={index} disablePadding>
+              <ListItemButton>
+                <ListItemIcon/>
+                <ListItemText primary={`Item ${index + 1}`} />
+              </ListItemButton>
             </ListItem>
           ))}
         </Drawer>

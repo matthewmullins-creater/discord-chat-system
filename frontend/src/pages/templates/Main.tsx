@@ -13,7 +13,7 @@ const Main = () => {
       }}
     >
       {[...Array(115)].map((_, index) => (
-        <Typography key={index} paragraph>
+        <Typography key={index} variant="body1" component={"p"}>
           {index + 1}
         </Typography>
       ))}
