@@ -58,6 +58,7 @@ class ServerListViewSet(viewsets.ViewSet):
         """
 
         category = request.query_params.get('category')
+        print("category",category)
         by_user = request.query_params.get('by_user') == 'true'
         qty = request.query_params.get('qty')
         by_serverid = request.query_params.get('by_serverid')
